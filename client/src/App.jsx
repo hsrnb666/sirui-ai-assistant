@@ -5,9 +5,9 @@ import SettingsModal from './components/SettingsModal';
 import * as api from './api';
 
 const DEFAULT_SETTINGS = {
-  apiKey: 'sk-puqbscedhxraliuvyppxvcfmnjoufxqsjlfxmdatyxmijgqc',
-  apiUrl: 'https://api.siliconflow.cn/v1',
-  model: 'deepseek-ai/DeepSeek-V3',
+  apiKey: 'ark-cdd9bac7-230c-4d7c-bdcd-90a250971314-65aa1',
+  apiUrl: 'https://ark.cn-beijing.volces.com/api/v3',
+  model: 'ep-20260706173107-6s62h',
   temperature: 0.7,
   maxTokens: 2048,
   systemPrompt: '你是思瑞AI助手，一个智能、友善的AI助手，随时为用户提供帮助和解答问题。'

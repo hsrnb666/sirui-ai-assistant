@@ -50,20 +50,20 @@ const SEED_CONVERSATIONS = [
     const settings = localStorage.getItem(STORAGE_KEY_SETTINGS);
     if (!settings || settings === '{}') {
       localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify({
-        apiUrl: 'https://api.siliconflow.cn/v1',
-        model: 'deepseek-ai/DeepSeek-V3',
+        apiUrl: 'https://ark.cn-beijing.volces.com/api/v3',
+        model: 'ep-20260706173107-6s62h',
         temperature: 0.7,
         maxTokens: 2048,
         systemPrompt: '\u4f60\u662f\u601d\u745eAI\u52a9\u624b\uff0c\u4e00\u4e2a\u667a\u80fd\u3001\u53cb\u5584\u7684AI\u52a9\u624b\uff0c\u968f\u65f6\u4e3a\u7528\u6237\u63d0\u4f9b\u5e2e\u52a9\u548c\u89e3\u7b54\u95ee\u9898\u3002',
-        apiKey: 'sk-puqbscedhxraliuvyppxvcfmnjoufxqsjlfxmdatyxmijgqc'
+        apiKey: 'ark-cdd9bac7-230c-4d7c-bdcd-90a250971314-65aa1'
       }));
     } else {
       // Migrate old qoder settings to SiliconFlow
       const parsed = JSON.parse(settings);
-      if (parsed.apiUrl && parsed.apiUrl.includes('qoder')) {
-        parsed.apiUrl = 'https://api.siliconflow.cn/v1';
-        parsed.apiKey = 'sk-puqbscedhxraliuvyppxvcfmnjoufxqsjlfxmdatyxmijgqc';
-        parsed.model = 'deepseek-ai/DeepSeek-V3';
+      if (parsed.apiUrl && (parsed.apiUrl.includes('qoder') || parsed.apiUrl.includes('siliconflow'))) {
+        parsed.apiUrl = 'https://ark.cn-beijing.volces.com/api/v3';
+        parsed.apiKey = 'ark-cdd9bac7-230c-4d7c-bdcd-90a250971314-65aa1';
+        parsed.model = 'ep-20260706173107-6s62h';
         localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(parsed));
       }
     }
@@ -130,7 +130,7 @@ export async function saveSettings(settings) {
 // Build AI API URL
 function buildAiUrl(apiUrl, endpoint) {
   const base = apiUrl.replace(/\/+$/, '');
-  if (base.endsWith('/v1')) return base + endpoint;
+  if (base.endsWith('/v1') || base.endsWith('/v3')) return base + endpoint;
   return base + '/v1' + endpoint;
 }
 
